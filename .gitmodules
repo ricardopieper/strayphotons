@@ -21,7 +21,8 @@
 	url = https://github.com/ValveSoftware/openvr.git
 [submodule "ext/physx"]
 	path = ext/physx
-	url = https://github.com/frustra/physx-bins.git
+	url = https://github.com/ricardopieper/physx-bins.git
+	branch = add-mac-bins
 [submodule "ext/picojson"]
 	path = ext/picojson
 	url = https://github.com/frustra/picojson.git

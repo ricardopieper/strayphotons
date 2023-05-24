@@ -162,7 +162,10 @@ namespace ecs {
             ZoneScoped;
 
             std::vector<ecs::Entity> scriptEntities;
-            for (auto &[relativeName, flatEnt] : entityList) {
+
+            for (auto &it : entityList) {
+                auto &relativeName = it.first;
+                auto &flatEnt = it.second;
                 ecs::Entity newEntity = scene->NewPrefabEntity(lock, rootEnt, prefabScriptId, relativeName, scope);
                 if (!newEntity) {
                     // Most llkely a duplicate entity or invalid name

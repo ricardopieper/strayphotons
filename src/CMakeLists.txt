@@ -32,7 +32,7 @@ add_module_configuration(
         ${PROJECT_INPUT_GLFW_LIB}
         ${PROJECT_PHYSICS_PHYSX_LIB}
         "$<IF:$<BOOL:${WIN32}>,${PROJECT_AUDIO_LIB},>"
-        ${PROJECT_XR_OPENVR_LIB}
+        #${PROJECT_XR_OPENVR_LIB}
         ${PROJECT_SCRIPTS_LIB}
 )
 

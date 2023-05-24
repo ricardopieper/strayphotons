@@ -16,12 +16,14 @@ target_link_libraries(${PROJECT_XR_OPENVR_LIB} PUBLIC
     openvr
 )
 
-target_compile_definitions(${PROJECT_XR_CORE_LIB} INTERFACE
-    SP_XR_SUPPORT
-)
-target_compile_definitions(${PROJECT_XR_OPENVR_LIB} PUBLIC
-    SP_XR_SUPPORT_OPENVR
-)
+if (NOT APPLE)
+	target_compile_definitions(${PROJECT_XR_CORE_LIB} INTERFACE
+		SP_XR_SUPPORT
+	)
+	target_compile_definitions(${PROJECT_XR_OPENVR_LIB} PUBLIC
+		SP_XR_SUPPORT_OPENVR
+	)
+endif()
 
 target_precompile_headers(${PROJECT_XR_CORE_LIB} REUSE_FROM ${PROJECT_CORE_LIB})
 target_precompile_headers(${PROJECT_XR_OPENVR_LIB} REUSE_FROM ${PROJECT_CORE_LIB})

@@ -75,7 +75,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "^(Apple)?Clang$")
 
-    set(CMAKE_CXX_FLAGS                 "-Wall -Werror -Wformat-security -Wno-deprecated-volatile -fgnuc-version=5")
+    set(CMAKE_CXX_FLAGS                 "-Wall -Wformat-security -Wno-deprecated-volatile -fgnuc-version=5")
     set(CMAKE_CXX_FLAGS_RELEASE         "-O3")
     set(CMAKE_CXX_FLAGS_RELWITHDEBINFO  "-g3 -ggdb3 -Og")
     set(CMAKE_CXX_FLAGS_DEBUG           "-g3 -ggdb3 -O0")
@@ -178,7 +178,7 @@ if(SP_BUILD_RUST)
     target_link_libraries(${PROJECT_COMMON_EXE} INTERFACE
         sp-rust
     )
-    
+
     if(ipo_supported)
         set_target_properties(sp-rust PROPERTIES INTERPROCEDURAL_OPTIMIZATION TRUE)
     endif()

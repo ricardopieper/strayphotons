@@ -116,6 +116,7 @@ namespace sp::vulkan {
         }
         extensions.emplace_back(VK_KHR_GET_PHYSICAL_DEVICE_PROPERTIES_2_EXTENSION_NAME);
         extensions.emplace_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+        extensions.emplace_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
 
         if (enableValidationLayers) {
             Logf("Running with Vulkan validation layer");
@@ -135,7 +136,10 @@ namespace sp::vulkan {
             VK_MAKE_VERSION(1, 0, 0),
             VULKAN_API_VERSION);
 
-        vk::InstanceCreateInfo createInfo(vk::InstanceCreateFlags(),
+        auto vkFlags = vk::InstanceCreateFlags();
+        vkFlags |= vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR;
+
+        vk::InstanceCreateInfo createInfo(vkFlags,
             &applicationInfo,
             layers.size(),
             layers.data(),
@@ -249,8 +253,8 @@ namespace sp::vulkan {
         vector<const char *> enabledDeviceExtensions = {
             VK_KHR_MULTIVIEW_EXTENSION_NAME,
             VK_EXT_MEMORY_BUDGET_EXTENSION_NAME,
-            VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME,
-            VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME,
+            // VK_KHR_SHADER_NON_SEMANTIC_INFO_EXTENSION_NAME,
+            // VK_EXT_CALIBRATED_TIMESTAMPS_EXTENSION_NAME,
             VK_EXT_SHADER_VIEWPORT_INDEX_LAYER_EXTENSION_NAME,
         };
 
@@ -287,7 +291,7 @@ namespace sp::vulkan {
         Assert(availableDeviceFeatures.drawIndirectFirstInstance, "device must support drawIndirectFirstInstance");
         Assert(availableDeviceFeatures.shaderInt16, "device must support shaderInt16");
         Assert(availableDeviceFeatures.fragmentStoresAndAtomics, "device must support fragmentStoresAndAtomics");
-        Assert(availableDeviceFeatures.wideLines, "device must support wideLines");
+        // Assert(availableDeviceFeatures.wideLines, "device must support wideLines");
         Assert(availableVulkan11Features.multiview, "device must support multiview");
         Assert(availableVulkan11Features.shaderDrawParameters, "device must support shaderDrawParameters");
         Assert(availableVulkan11Features.storageBuffer16BitAccess, "device must support storageBuffer16BitAccess");
@@ -295,7 +299,7 @@ namespace sp::vulkan {
             "device must support uniformAndStorageBuffer16BitAccess");
         Assert(availableVulkan12Features.shaderOutputViewportIndex, "device must support shaderOutputViewportIndex");
         Assert(availableVulkan12Features.shaderOutputLayer, "device must support shaderOutputLayer");
-        Assert(availableVulkan12Features.drawIndirectCount, "device must support drawIndirectCount");
+        // Assert(availableVulkan12Features.drawIndirectCount, "device must support drawIndirectCount");
         Assert(availableVulkan12Features.runtimeDescriptorArray, "device must support runtimeDescriptorArray");
         Assert(availableVulkan12Features.descriptorBindingPartiallyBound,
             "device must support descriptorBindingPartiallyBound");
@@ -309,7 +313,7 @@ namespace sp::vulkan {
         vk::PhysicalDeviceVulkan12Features enabledVulkan12Features;
         enabledVulkan12Features.shaderOutputViewportIndex = true;
         enabledVulkan12Features.shaderOutputLayer = true;
-        enabledVulkan12Features.drawIndirectCount = true;
+        // enabledVulkan12Features.drawIndirectCount = true;
         enabledVulkan12Features.runtimeDescriptorArray = true;
         enabledVulkan12Features.descriptorBindingPartiallyBound = true;
         enabledVulkan12Features.descriptorBindingVariableDescriptorCount = true;
@@ -334,7 +338,7 @@ namespace sp::vulkan {
         enabledDeviceFeatures.multiViewport = true;
         enabledDeviceFeatures.shaderInt16 = true;
         enabledDeviceFeatures.fragmentStoresAndAtomics = true;
-        enabledDeviceFeatures.wideLines = true;
+        // enabledDeviceFeatures.wideLines = true;
 
         vk::DeviceCreateInfo deviceInfo;
         deviceInfo.queueCreateInfoCount = queueInfos.size();

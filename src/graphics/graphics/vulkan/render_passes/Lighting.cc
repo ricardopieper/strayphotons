@@ -210,8 +210,11 @@ namespace sp::vulkan::renderer {
             data.gelId = 0;
             if (!light.gelName.empty()) {
                 // project 4 corners of optic into gel texture uv space
-                static const auto opticCornerOffsets = std::array<glm::vec2, 4>(
-                    {{-0.5, -0.5}, {-0.5, 0.5}, {0.5, 0.5}, {0.5, -0.5}});
+                static auto opticCornerOffsets = std::array<glm::vec2, 4>();
+                opticCornerOffsets[0] = {-0.5, -0.5};
+                opticCornerOffsets[1] = {-0.5, 0.5};
+                opticCornerOffsets[2] = {0.5, 0.5};
+                opticCornerOffsets[3] = {0.5, -0.5};
 
                 auto &parentLight = gpuData.lights[vLight.parentIndex.value()];
 

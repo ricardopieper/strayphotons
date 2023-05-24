@@ -1,5 +1,15 @@
 # Stray Photons [![Build status](https://badge.buildkite.com/6ad6424eb4ac47ecf0738dfa96d3f011019a39d7b6066c363e.svg?branch=master)](https://buildkite.com/frustra/strayphotons)
 
+## M1 Fork
+This fork is for MacOS ARM64 M1, and contains changes to make it at least compile and launch on Mac OS running on M1.
+Currently it does not run the engine due to vulkan errors. 
+
+This is also using these other forks:
+ - https://github.com/ricardopieper/PhysX on branch mac-arm64-build 
+ - https://github.com/ricardopieper/physx-bins on branch add-mac-bins 
+
+# About Stray Photons
+
 Stray Photons is a high performance sandbox game engine built on top of the [Tecs Entity Component System](https://github.com/xthexder/Tecs). Designed with a focus on high quality VR interactions, Stray Photons features a voxel-based GI lighting system, seamless asynchronous scene loading, full-hand physics interactions, powerful game logic signalling and scripting capabilities, and much more.
 
 ## Dependencies
